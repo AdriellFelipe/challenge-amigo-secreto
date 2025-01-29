@@ -5,9 +5,12 @@ function adicionarAmigo() {
     let nomeAmigo = input.value.trim();
 
     if (nomeAmigo !== "") {
-        amigos.push(nomeAmigo);
-
-        atualizarListaAmigos();
+        if (amigos.includes(nomeAmigo)) {
+            alert("Este nome já foi adicionado.");
+        } else {
+            amigos.push(nomeAmigo);
+            atualizarListaAmigos();
+        }
 
         input.value = "";
     } else {
@@ -39,6 +42,17 @@ function sortearAmigo() {
 
     let resultadoElement = document.getElementById('resultado');
     resultadoElement.innerHTML = `<li>O amigo sorteado é: <strong>${amigoSorteado}</strong></li>`;
+
+    atualizarListaAmigos();
+}
+
+function recomecarSorteio() {
+    let resultadoElement = document.getElementById('resultado');
+    resultadoElement.innerHTML = '';
+
+    document.getElementById('listaAmigos').style.display = 'block';
+
+    amigos = [];
 
     atualizarListaAmigos();
 }
